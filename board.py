@@ -3,14 +3,18 @@
 # Using object oriented and functional principals instead of
 # just functions
 
+import random
+
+
 FOUR_SPACES = '    '
 THREE_SPACES = '   '
 
 class Board:
-  def __init__(self, height=15, width=60):
+  def __init__(self, height=15, width=60, numChests=3):
     self.height = height
     self.width = width
     self.widthTens = round(width/10)
+    self.numChests = numChests
 
   def getNewBoard(self):
   # Create a width x height board.
@@ -50,7 +54,17 @@ class Board:
         boardRow += board[column][row]
       print('%s%s %s %s' % (extraSpace, row, boardRow, row))
 
+  def getRandomChests(self):
+     # Create a list of chest data structures (two-item lists of x, y int
+     chests = []
+     while len(chests) < self.numChests:
+         newChest = [random.randint(0, self.width - 1), random.randint(0, self.height)]
+         if newChest not in chests:
+             chests.append(newChest)
+     return chests
+
 board = Board()
 theBoard = board.getNewBoard()
 board.drawBoard(theBoard)
+print(board.getRandomChests())
 
