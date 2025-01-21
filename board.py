@@ -62,6 +62,9 @@ class Board:
          if newChest not in chests:
              chests.append(newChest)
      return chests
+ 
+  def isOnBoard(self, x, y):
+    return x >= 0 and x <= self.width and y >= 0 and y <= self.height
 
 board = Board()
 theBoard = board.getNewBoard()
